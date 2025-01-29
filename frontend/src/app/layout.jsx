@@ -1,4 +1,7 @@
+
+import StoreProvider from "@/lib/Provider";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
 export const metadata = {
   title: "Clothes",
@@ -9,7 +12,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        {children}
+        <StoreProvider>
+          <Navbar/>
+          {children}
+        </StoreProvider>
       </body>
     </html>
   );

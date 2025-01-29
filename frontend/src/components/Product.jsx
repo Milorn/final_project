@@ -1,6 +1,13 @@
+"use client"
+
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 export default function Product({ product }) {
+
+
+    const isConnected = useSelector(state => state.user.isConnected)
+
     return (
         <div className="border-2 rounded">
             <Link href={`/products/${product.id}`}>
@@ -20,12 +27,18 @@ export default function Product({ product }) {
                         ))
                     }
                 </div>
-                <div className="space-x-2 mt-3">
-                    {
-                        product.sizes.map(size => (
-                            <span key={size} className="border border-black p-1 font-semibold">{size}</span>
-                        ))
-                    }
+                <div className="flex justify-between">
+                    <div className="space-x-2 mt-3">
+                        {
+                            product.sizes.map(size => (
+                                <span key={size} className="border border-black p-1 font-semibold">{size}</span>
+                            ))
+                        }
+                    </div>
+                    <div>
+                       { isConnected &&  <button className="bg-red-500 text-white font-semibold px-5 py-2">Delete</button>}
+                    </div>
+
                 </div>
             </div>
         </div>

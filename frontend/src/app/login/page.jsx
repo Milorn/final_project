@@ -1,5 +1,6 @@
 "use client"
 
+import api from "@/lib/api"
 import { loginAction } from "@/lib/userSlice"
 import axios from "axios"
 import { useRouter } from "next/navigation"
@@ -16,7 +17,7 @@ export default function Login() {
     const login = async (e) => {
         try  {
             e.preventDefault()
-            const response = await axios.post('http://localhost:3000/login', {email, password})
+            const response = await api.post('/login', {email, password})
             localStorage.setItem('token', response.data.token)
             dispatch(loginAction(response.data.user))
             router.push('/')

@@ -1,12 +1,14 @@
 "use client"
 
+import { addToCart } from "@/lib/cartSlice";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Product({ product }) {
 
 
     const isConnected = useSelector(state => state.user.isConnected)
+    const dispatch = useDispatch()
 
     return (
         <div className="border-2 rounded">
@@ -35,7 +37,8 @@ export default function Product({ product }) {
                             ))
                         }
                     </div>
-                    <div>
+                    <div className="space-x-3">
+                    <button className="bg-black text-white font-semibold px-5 py-2" onClick={() => dispatch(addToCart(product))}>Add to cart</button>
                        { isConnected &&  <button className="bg-red-500 text-white font-semibold px-5 py-2">Delete</button>}
                     </div>
 

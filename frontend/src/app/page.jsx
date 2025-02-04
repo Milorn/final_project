@@ -1,7 +1,7 @@
 "use client"
 
 import Product from "@/components/Product"
-import axios from "axios"
+import api from "@/lib/api"
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
@@ -15,7 +15,7 @@ export default function Homepage() {
   const isConnected = useSelector(state => state.user.isConnected)
 
   const filter = () => {
-    axios.get('http://localhost:3000/products', {
+    api.get('/products', {
       params: {
         category,
         search,
@@ -26,7 +26,7 @@ export default function Homepage() {
   }
 
   useEffect(() => {
-    axios.get('http://localhost:3000/products')
+    api.get('/products')
       .then((response) => setProducts(response.data))
   }, [])
 

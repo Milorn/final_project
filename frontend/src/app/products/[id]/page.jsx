@@ -1,5 +1,6 @@
 "use client"
 
+import api from "@/lib/api"
 import axios from "axios"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -10,7 +11,7 @@ export default function SingleProduct() {
     const params = useParams()
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/products/${params.id}`)
+        api.get(`/products/${params.id}`)
             .then((response) => setProduct(response.data))
     })
 

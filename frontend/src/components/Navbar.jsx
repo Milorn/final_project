@@ -1,6 +1,7 @@
 "use client"
 
 import api from "@/lib/api"
+import { setItems } from "@/lib/cartSlice"
 import { loginAction, logoutAction } from "@/lib/userSlice"
 import Link from "next/link"
 import { useEffect } from "react"
@@ -20,6 +21,10 @@ export default function Navbar() {
                 .then(response => {
                     dispatch(loginAction(response.data))
                 })
+        }
+        const items = localStorage.getItem('items')
+        if(items) {
+            dispatch(setItems(JSON.parse(items)))
         }
     }, [])
 
